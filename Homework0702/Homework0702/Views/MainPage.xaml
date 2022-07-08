@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Homework0702.Views.MainPage"
+             Title="{Binding Title}">
+
+    <StackLayout Margin="20,0">
+        <Label Text="{Binding Question}" />
+        <Label Text="請輸入你的答案" />
+        <Entry Text="{Binding Answer}"></Entry>
+        <Label Text="{Binding ResultMessage}"></Label>
+        <Button Text="重新產生問題" Command="{Binding CreateQuestion}"></Button>
+        <Button Text="送出答案" Command="{Binding SubmitAnswer}"></Button>
+    </StackLayout>
+
+</ContentPage>
