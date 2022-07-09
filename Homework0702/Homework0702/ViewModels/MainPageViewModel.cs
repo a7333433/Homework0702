@@ -22,8 +22,9 @@ namespace Homework0702.ViewModels
         public string Question { get; set; }
         public string ResultMessage { get; set; }
         public string Answer { get; set; }
-        private int r1 { get; set; }
-        private int r2 { get; set; }
+        private Random random { get; set; }
+        private int i1 { get; set; }
+        private int i2 { get; set; }
         public DelegateCommand SubmitAnswer { get; set; }
         public DelegateCommand CreateQuestion { get; set; }
 
@@ -31,6 +32,7 @@ namespace Homework0702.ViewModels
         {
             this.navigationService = navigationService;
 
+            random = new Random(DateTime.Now.Millisecond);
             SubmitAnswer = new DelegateCommand(OnSubmitAnswerClick);
             CreateQuestion = new DelegateCommand(OnCreateQuestionClick);
             OnCreateQuestionClick();
@@ -46,7 +48,7 @@ namespace Homework0702.ViewModels
 
         private void OnSubmitAnswerClick()
         {
-            if (int.TryParse(Answer, out int result) && result == r1 + r2)
+            if (int.TryParse(Answer, out int result) && result == i1 + i2)
                 ResultMessage = "正確!";
             else
                 ResultMessage = "錯誤!";
@@ -55,11 +57,11 @@ namespace Homework0702.ViewModels
 
         private void OnCreateQuestionClick()
         {
-            r1 = new Random(DateTime.Now.Millisecond).Next(1, 100);
-            r2 = new Random(DateTime.Now.Millisecond).Next(1, 100);
+            i1 = random.Next(1, 100);
+            i2 = random.Next(1, 100);
             ResultMessage = "";
             Answer = "";
-            Question = $@"{r1} + {r2} = ?";
+            Question = $@"{i1} + {i2} = ?";
         }
     }
 }
